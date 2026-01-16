@@ -2,11 +2,11 @@
 <div class="social-share-inline">
     <div class="social-share-title">Share this post</div>
     <div class="social-share-links">
-        {{- $url := .Permalink | urlize -}}
-        {{- $title := .Title | urlize -}}
+        {{- $url := .Permalink -}}
+        {{- $title := .Title -}}
 
         {{/* X (Twitter) */}}
-        <a href="https://twitter.com/intent/tweet?url={{ $url }}&text={{ $title }}"
+        <a href="https://twitter.com/intent/tweet?url={{ $url | safeURL }}&text={{ $title | querify "" | strings.TrimPrefix "=" }}"
            target="_blank"
            rel="noopener"
            aria-label="Share on X"
@@ -16,7 +16,7 @@
         </a>
 
         {{/* BlueSky */}}
-        <a href="https://bsky.app/intent/compose?text={{ $title }}%20{{ $url }}"
+        <a href="https://bsky.app/intent/compose?text={{ $title | querify "" | strings.TrimPrefix "=" }}%20{{ $url | safeURL }}"
            target="_blank"
            rel="noopener"
            aria-label="Share on BlueSky"
@@ -26,7 +26,7 @@
         </a>
 
         {{/* LinkedIn */}}
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url }}"
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url | safeURL }}"
            target="_blank"
            rel="noopener"
            aria-label="Share on LinkedIn"
@@ -36,7 +36,7 @@
         </a>
 
         {{/* WhatsApp */}}
-        <a href="https://wa.me/?text={{ $title }}%20{{ $url }}"
+        <a href="https://wa.me/?text={{ $title | querify "" | strings.TrimPrefix "=" }}%20{{ $url | safeURL }}"
            target="_blank"
            rel="noopener"
            aria-label="Share on WhatsApp"
@@ -48,7 +48,7 @@
         </a>
 
         {{/* Facebook */}}
-        <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}"
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url | safeURL }}"
            target="_blank"
            rel="noopener"
            aria-label="Share on Facebook"
@@ -58,7 +58,7 @@
         </a>
 
         {{/* Telegram */}}
-        <a href="https://t.me/share/url?url={{ $url }}&text={{ $title }}"
+        <a href="https://t.me/share/url?url={{ $url | safeURL }}&text={{ $title | querify "" | strings.TrimPrefix "=" }}"
            target="_blank"
            rel="noopener"
            aria-label="Share on Telegram"
@@ -68,7 +68,7 @@
         </a>
 
         {{/* Pinterest */}}
-        <a href="https://pinterest.com/pin/create/button/?url={{ $url }}&description={{ $title }}"
+        <a href="https://pinterest.com/pin/create/button/?url={{ $url | safeURL }}&description={{ $title | querify "" | strings.TrimPrefix "=" }}"
            target="_blank"
            rel="noopener"
            aria-label="Share on Pinterest"
@@ -81,7 +81,7 @@
         </a>
 
         {{/* Email */}}
-        <a href="mailto:?subject={{ $title }}&body=Check%20out%20this%20post:%20{{ $url }}"
+        <a href="mailto:?subject={{ $title | querify "" | strings.TrimPrefix "=" }}&body=Check%20out%20this%20post:%20{{ $url | safeURL }}"
            target="_self"
            rel="noopener"
            aria-label="Share via Email"
