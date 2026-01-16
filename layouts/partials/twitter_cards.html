@@ -1,0 +1,20 @@
+{{/* Custom Twitter Card implementation with summary_large_image support */}}
+{{ $twitterCard := .Site.Params.seo.twitter_card | default "summary_large_image" }}
+<meta name="twitter:card" content="{{ $twitterCard }}">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+
+{{/* Twitter Site and Creator */}}
+{{ with .Site.Params.seo.twitter_site }}<meta name="twitter:site" content="{{ . }}">{{ end }}
+{{ with .Site.Params.seo.twitter_creator }}<meta name="twitter:creator" content="{{ . }}">{{ end }}
+
+{{/* Twitter Image - with fallbacks */}}
+{{ if .Params.images }}
+  {{ range first 1 .Params.images }}
+    <meta name="twitter:image" content="{{ . | absURL }}">
+  {{ end }}
+{{ else if .Params.featuredImg }}
+  <meta name="twitter:image" content="{{ .Params.featuredImg | absURL }}">
+{{ else if .Site.Params.seo.og_image }}
+  <meta name="twitter:image" content="{{ .Site.Params.seo.og_image | absURL }}">
+{{ end }}

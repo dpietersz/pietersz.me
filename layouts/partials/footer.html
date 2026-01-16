@@ -1,0 +1,7 @@
+{{/* Custom footer - replaces theme footer */}}
+<p>
+	&copy; {{ now.Format (default "2006" .Site.Params.dateform.CopyrightDate) }} <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+	&#183; Steal this post ➜ <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · Code <a href="https://github.com/dpietersz/pietersz.me/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a>
+	{{ with .OutputFormats.Get "RSS" }}&#183; <a href="{{ "index.xml" | absLangURL }}" target="_blank" title="rss">{{- partial "svg.html" (dict "context" . "name" "rss") -}}</a>{{- end -}}
+</p>
+

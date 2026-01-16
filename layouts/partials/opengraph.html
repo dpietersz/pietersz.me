@@ -1,0 +1,27 @@
+{{/* Custom Open Graph implementation with enhanced image support */}}
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+<meta property="og:locale" content="{{ .Site.Language.Lang | default "en_US" | strings.ReplaceRE `-` `_` }}">
+
+{{ if .IsPage }}
+<meta property="og:type" content="article">
+{{ with .Section }}<meta property="article:section" content="{{ . }}">{{ end }}
+{{ with .PublishDate }}<meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}">{{ end }}
+{{ with .Lastmod }}<meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}">{{ end }}
+{{ range .Params.tags }}<meta property="article:tag" content="{{ . }}">{{ end }}
+{{ else }}
+<meta property="og:type" content="website">
+{{ end }}
+
+{{/* Open Graph Image - with fallbacks */}}
+{{ if .Params.images }}
+  {{ range first 1 .Params.images }}
+    <meta property="og:image" content="{{ . | absURL }}">
+  {{ end }}
+{{ else if .Params.featuredImg }}
+  <meta property="og:image" content="{{ .Params.featuredImg | absURL }}">
+{{ else if .Site.Params.seo.og_image }}
+  <meta property="og:image" content="{{ .Site.Params.seo.og_image | absURL }}">
+{{ end }}

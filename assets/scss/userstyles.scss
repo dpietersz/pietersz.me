@@ -1,0 +1,1890 @@
+// User Custom Styles - Gruvbox Baby Theme
+// This file applies custom visual features using the Gruvbox Baby color palette
+
+// =============================================================================
+// GRUVBOX BABY COLOR PALETTE
+// =============================================================================
+
+// Backgrounds (dark to light)
+$gb-bg-darker: #242424;       // Darkest background
+$gb-bg: #282828;              // Standard dark background
+$gb-bg-soft: #32302F;         // Slightly lighter background
+$gb-bg-light: #504945;        // Light background / dark gray
+$gb-gray: #665C54;            // Gray (comments, muted)
+
+// Foreground / Text
+$gb-fg: #E7D7AD;              // Primary text (cream/beige)
+$gb-fg-muted: #665C54;        // Muted text (same as gray)
+
+// Yellows
+$gb-yellow-bright: #EEBD35;   // Bright yellow (accent)
+$gb-yellow: #FABD2F;          // Standard yellow
+
+// Greens
+$gb-olive: #98971A;           // Olive / yellow-green
+$gb-green: #689D6A;           // Green (aqua-ish)
+$gb-green-light: #8EC07C;     // Light green
+
+// Oranges / Reds
+$gb-orange: #D65D0E;          // Dark orange (used for links in light mode)
+$gb-orange-bright: #FE8019;   // Bright orange (links, accents) - not in palette but commonly used
+$gb-red: #FB4934;             // Bright red
+$gb-red-dark: #CC241D;        // Dark red
+
+// Purples / Pinks
+$gb-purple: #B16286;          // Purple
+$gb-pink: #D4879C;            // Pink / light purple
+
+// Blues / Teals
+$gb-blue-light: #7FA2AC;      // Light blue / steel
+$gb-aqua: #83A598;            // Aqua / teal (common in gruvbox)
+$gb-blue: #458588;            // Blue / teal
+
+// Legacy variable aliases (for backwards compatibility)
+$gruvbox-dark-bg: $gb-bg;
+$gruvbox-dark-bg1: $gb-bg-soft;
+$gruvbox-dark-bg2: $gb-bg-light;
+$gruvbox-dark-fg: $gb-fg;
+$gruvbox-dark-fg-muted: $gb-fg-muted;
+$gruvbox-orange: $gb-orange-bright;
+$gruvbox-yellow: $gb-yellow;
+
+// =============================================================================
+// SCROLL PROGRESS BAR - Shows reading progress on blog posts
+// =============================================================================
+
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, $gb-aqua, $gb-green-light);
+  transition: width 50ms ease-out;
+  border-radius: 0 2px 2px 0;
+}
+
+// Light mode - use different colors for better visibility
+@media (prefers-color-scheme: light) {
+  .scroll-progress-bar {
+    background: linear-gradient(90deg, $gb-blue, $gb-aqua);
+  }
+}
+
+// =============================================================================
+// TYPOGRAPHY - Monaspace Neon Enhancements
+// =============================================================================
+
+:root {
+  // Typography scale
+  --font-size-base: 16px;
+  --line-height-body: 1.7;
+  --line-height-heading: 1.3;
+
+  // Font family
+  --font-family-base: "Monaspace Neon", "SF Mono", "Fira Code", "Courier New", monospace;
+
+  // Font weights
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  // Font feature settings for Monaspace
+  --font-features-default: "calt" 1, "liga" 1, "ss01" 1, "ss02" 1, "ss03" 1;
+  --font-features-code: "calt" 1, "liga" 1, "ss01" 1, "ss02" 1, "ss03" 1, "ss04" 1, "ss05" 1;
+}
+
+html {
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  font-feature-settings: var(--font-features-default);
+  font-variation-settings: "wght" 400, "wdth" 100, "slnt" 0;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-heading);
+  font-feature-settings: var(--font-features-default);
+}
+
+// Code elements with enhanced ligatures
+code, pre, kbd, samp, var {
+  font-family: var(--font-family-base);
+  font-feature-settings: var(--font-features-code);
+  font-variant-ligatures: common-ligatures contextual;
+}
+
+// =============================================================================
+// CONTENT LINK HOVER - Subtle rotation effect like social icons
+// =============================================================================
+
+// Content links (articles, about page) - retro dotted underline with subtle rotation hover
+// Using Gruvbox Baby aqua (#83A598) for links - great contrast on dark bg
+.content a:not(.anchor),
+.dm-content a:not(.anchor),
+.about-bio a,
+.about-container a {
+  color: $gb-aqua !important;
+  text-decoration: underline dotted !important;
+  text-decoration-color: rgba($gb-aqua, 0.5) !important;
+  text-underline-offset: 3px !important;
+  background: transparent !important; // Prevent any background on links
+  box-shadow: none !important; // Override theme's inset box-shadow fill effect
+  display: inline-block; // Required for transform to work
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1), color 200ms ease, text-decoration-color 200ms ease;
+  will-change: transform;
+
+  &:hover,
+  &:focus {
+    color: $gb-yellow !important; // Yellow on hover for emphasis
+    text-decoration: underline dotted !important;
+    text-decoration-color: rgba($gb-yellow, 0.7) !important;
+    text-shadow: none !important; // Remove glow - override theme
+    background: transparent !important; // Ensure no background on hover
+    box-shadow: none !important; // Override theme's inset box-shadow fill effect on hover
+    transform: rotate(2deg); // Subtle rotation, no scale
+  }
+
+  &:active {
+    transform: rotate(2deg) scale(0.98);
+  }
+}
+
+// Light mode content links
+@media (prefers-color-scheme: light) {
+  .content a:not(.anchor),
+  .dm-content a:not(.anchor),
+  .about-bio a,
+  .about-container a {
+    color: $gb-blue !important; // Blue/teal for light mode
+    text-decoration: underline dotted !important;
+    text-decoration-color: rgba($gb-blue, 0.5) !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    &:hover,
+    &:focus {
+      color: $gb-orange !important; // Dark orange on hover
+      text-decoration: underline dotted !important;
+      text-decoration-color: rgba($gb-orange, 0.7) !important;
+      text-shadow: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
+// =============================================================================
+// TERMINAL CURSOR ANIMATION
+// =============================================================================
+
+.logo-text::after,
+.site-title::after,
+header h1 a::after,
+.header-title::after {
+  content: "▋";
+  color: $gruvbox-orange;
+  animation: cursor-blink 1.2s steps(2) infinite;
+  margin-left: 0.15em;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+@keyframes cursor-blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+// =============================================================================
+// GIT-LOG STYLED METADATA
+// =============================================================================
+
+.post-meta,
+.article-meta,
+.metadata,
+time,
+.read-time,
+.post-date {
+  font-family: var(--font-family-base);
+  font-size: 0.75em; // Reduced from 0.9em for more subtle appearance
+  color: $gruvbox-dark-fg-muted;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  opacity: 0.8; // Added subtle transparency
+}
+
+// =============================================================================
+// HEADING HIGHLIGHTS (Highlighter Pen Effect)
+// =============================================================================
+
+// H1 headings with orange highlight
+article h1 {
+  position: relative;
+  padding-bottom: 0.15em;
+  margin-bottom: 1em;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80%;
+    height: 0.35em;
+    background: linear-gradient(
+      to right,
+      rgba($gruvbox-orange, 0.3),
+      transparent
+    );
+    z-index: -1;
+    border-radius: 2px;
+  }
+}
+
+// Post titles on single post pages (not listing)
+.post-title:not(.post-title-list) {
+  position: relative;
+  padding-bottom: 0.15em;
+  margin-bottom: 1em;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80%;
+    height: 0.35em;
+    background: linear-gradient(
+      to right,
+      rgba($gruvbox-orange, 0.3),
+      transparent
+    );
+    z-index: -1;
+    border-radius: 2px;
+  }
+}
+
+// Post titles on listing page - no gradient underline
+.post-title-list {
+  &::after {
+    display: none !important;
+  }
+}
+
+// H2 headings with yellow highlight
+article h2,
+.content h2 {
+  position: relative;
+  padding-bottom: 0.1em;
+  margin-bottom: 0.8em;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60%;
+    height: 0.3em;
+    background: linear-gradient(
+      to right,
+      rgba($gruvbox-yellow, 0.25),
+      transparent
+    );
+    z-index: -1;
+    border-radius: 2px;
+  }
+}
+
+// =============================================================================
+// SCAN-LINE TEXTURE (Dark Mode Only)
+// =============================================================================
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+
+  // Scan-line gradient effect
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 1px,
+    rgba(0, 0, 0, 0.03) 1px,
+    rgba(0, 0, 0, 0.03) 2px
+  );
+
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+// Optional: Add subtle CRT vignette effect
+@media (min-width: 1024px) {
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+
+    opacity: 0.5;
+  }
+}
+
+// =============================================================================
+// POST CARD HOVER EFFECTS
+// =============================================================================
+
+.posts-group-item,
+.post-item,
+article.post {
+  position: relative;
+  padding-left: 1.25rem;
+  border-left: 3px solid transparent;
+  transition:
+    transform 250ms ease-out,
+    border-color 250ms ease-out,
+    background-color 250ms ease-out;
+  will-change: transform, border-color;
+
+  &:hover {
+    transform: translateX(-8px);
+    border-left-color: $gruvbox-orange;
+    background-color: rgba($gruvbox-orange, 0.05);
+
+    h2, h3 {
+      color: $gruvbox-orange;
+    }
+  }
+}
+
+// Post card left accent indicator
+.posts-group-item::before,
+.post-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: $gruvbox-orange;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 250ms ease-out;
+}
+
+.posts-group-item:hover::before,
+.post-item:hover::before {
+  transform: scaleY(1);
+}
+
+// =============================================================================
+// DANIEL MIESSLER STYLE TWO-COLUMN LAYOUT
+// =============================================================================
+
+// Main layout container
+.dm-layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%; // Ensure full width
+  box-sizing: border-box;
+}
+
+// Article grid - two columns on desktop
+.dm-article {
+  display: block;
+}
+
+// Mobile/tablet: single column
+@media (max-width: 1023px) {
+  .dm-sidebar {
+    margin-bottom: 2rem;
+  }
+
+  .dm-main {
+    max-width: 100%;
+  }
+
+  .dm-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: baseline;
+  }
+}
+
+// Desktop: two-column layout (lowered breakpoint to 1024px)
+@media (min-width: 1024px) {
+  .dm-article {
+    display: grid !important;
+    grid-template-columns: 220px 1fr !important;
+    gap: 50px;
+    align-items: start; // Both columns start at same vertical position
+  }
+
+  .dm-sidebar {
+    text-align: right; // Right-align all content in sidebar
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .dm-main {
+    max-width: 800px;
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  // Ensure first paragraph aligns with title
+  .dm-content > p:first-child,
+  .dm-content > *:first-child {
+    margin-top: 0;
+  }
+
+  .dm-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+}
+
+// =============================================================================
+// METADATA TYPOGRAPHY (Left Column)
+// =============================================================================
+
+// Date - uppercase, small, muted
+.dm-date {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: var(--font-weight-medium, 500);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $gruvbox-dark-fg-muted;
+}
+
+// Tags - slightly larger, orange accent
+.dm-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end; // Right-align tags
+
+  @media (max-width: 1023px) {
+    justify-content: flex-start;
+  }
+
+  a {
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-regular, 400);
+    color: $gruvbox-orange;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+// Reading time - light, italic
+.dm-reading-time {
+  font-size: 0.7rem;
+  font-weight: var(--font-weight-light, 300);
+  font-style: italic;
+  color: $gruvbox-dark-fg-muted;
+  opacity: 0.8;
+}
+
+// =============================================================================
+// HEADER TYPOGRAPHY (Left Column - Title & Subtitle)
+// =============================================================================
+
+.dm-header {
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+}
+
+// Title - sized for left column, bold
+.dm-title {
+  font-size: 1.4rem;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.3;
+  margin: 0 0 0.4rem 0;
+  padding: 0;
+  color: $gruvbox-dark-fg;
+
+  @media (min-width: 1200px) {
+    font-size: 1.25rem;
+  }
+}
+
+// Subtitle - lighter, italic
+.dm-subtitle {
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-light, 300);
+  line-height: 1.4;
+  margin: 0;
+  color: $gruvbox-dark-fg-muted;
+  font-style: italic;
+}
+
+// Content area
+.dm-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+// Post navigation
+.dm-post-nav {
+  max-width: 800px;
+  margin-left: 260px; // Align with content column
+
+  @media (max-width: 1023px) {
+    margin-left: 0;
+  }
+}
+
+.dm-comments {
+  max-width: 800px;
+  margin-left: 260px;
+
+  @media (max-width: 1023px) {
+    margin-left: 0;
+  }
+}
+
+// =============================================================================
+// SIDENOTES - Float LEFT into sidebar column
+// =============================================================================
+
+// Desktop: sidenotes float left into sidebar area (matching 1024px breakpoint)
+@media (min-width: 1024px) {
+  .dm-content {
+    position: relative;
+  }
+
+  .sidenote {
+    display: block;
+    float: left;
+    clear: left;
+    width: 220px; // Match sidebar width exactly
+    margin-left: -270px; // Sidebar width (220px) + gap (50px)
+    margin-right: 50px; // Gap width - ensures content doesn't wrap
+    margin-top: 0;
+    margin-bottom: 1.5em;
+    padding: 0;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: $gruvbox-dark-fg-muted;
+    font-weight: var(--font-weight-light, 300);
+    font-style: italic;
+    text-align: right; // Align text to right edge of sidenote
+    box-sizing: border-box;
+  }
+}
+
+// Mobile/tablet: inline with subtle styling
+@media (max-width: 1023px) {
+  .sidenote {
+    display: block;
+    margin: 1.5rem 0;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: $gruvbox-dark-fg-muted;
+    font-weight: var(--font-weight-light, 300);
+    font-style: italic;
+    border-left: 2px solid rgba($gruvbox-orange, 0.4);
+    background-color: rgba($gruvbox-dark-bg1, 0.2);
+  }
+}
+
+// =============================================================================
+// RESPONSIVE DESIGN ADJUSTMENTS
+// =============================================================================
+
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+
+  // Simplify hover effects on mobile
+  .posts-group-item:hover,
+  .post-item:hover {
+    transform: translateX(-4px);
+  }
+
+  // Remove scan-line effect on mobile for performance
+  body::before,
+  body::after {
+    display: none;
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY - REDUCED MOTION
+// =============================================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-text::after,
+  .site-title::after,
+  header h1 a::after,
+  .header-title::after {
+    animation: none;
+  }
+
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+// =============================================================================
+// NAVIGATION STYLES
+// =============================================================================
+
+// Horizontal navigation layout (desktop)
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  a {
+    font-family: var(--font-family-base);
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    color: $gruvbox-dark-fg;
+    text-decoration: none;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 250ms ease-out;
+
+    // Active state underline
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $gruvbox-orange;
+      transition: width 250ms ease-out;
+    }
+
+    &:hover {
+      color: $gruvbox-orange;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    // Active page indicator
+    &.active,
+    &[aria-current="page"] {
+      color: $gruvbox-orange;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Mobile navigation - vertical stack
+@media (max-width: 768px) {
+  #mobile-menu {
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 1rem 0;
+
+      li {
+        list-style: none;
+        margin: 0;
+
+        a {
+          display: block;
+          padding: 0.75rem 1.5rem;
+          min-height: 44px; // Minimum tap target size
+          font-size: 1.1rem;
+          color: $gruvbox-dark-fg;
+          text-decoration: none;
+          transition:
+            background-color 250ms ease-out,
+            color 250ms ease-out,
+            padding-left 250ms ease-out;
+
+          &:hover,
+          &:focus {
+            color: $gruvbox-orange;
+            background-color: rgba($gruvbox-orange, 0.1);
+            padding-left: 2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// =============================================================================
+// SOCIAL ICONS HOVER ANIMATION
+// =============================================================================
+
+// Social icons with 6-degree rotation hover effect (steipete.me pattern)
+.hdr-icons a,
+.social-icons a,
+footer a[rel*="me"],
+.hdr-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:hover {
+    transform: rotate(6deg) scale(1.1);
+  }
+
+  &:active {
+    transform: rotate(6deg) scale(0.95);
+  }
+}
+
+// Footer social icons layout
+footer .social-icons,
+footer .hdr-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+
+  a {
+    color: $gruvbox-dark-fg-muted;
+    transition: color 250ms ease-out, transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    &:hover {
+      color: $gruvbox-orange;
+    }
+  }
+}
+
+// Accessibility - Screen reader labels for icon-only links
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Ensure adequate tap targets on mobile
+@media (max-width: 768px) {
+  .hdr-icons a,
+  .social-icons a,
+  footer a[rel*="me"] {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.5rem;
+  }
+}
+
+// =============================================================================
+// THEME TOGGLE STYLING
+// =============================================================================
+
+#theme-toggle,
+button[aria-label*="theme" i],
+button[aria-label*="Theme" i] {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: $gruvbox-dark-fg;
+  transition:
+    color 250ms ease-out,
+    transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+  }
+
+  &:hover {
+    color: $gruvbox-orange;
+    transform: rotate(6deg) scale(1.1);
+  }
+
+  &:active {
+    transform: rotate(6deg) scale(0.95);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $gruvbox-orange;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+// =============================================================================
+// ABOUT PAGE WIDTH MATCHING POSTS
+// =============================================================================
+
+// Allow about page to use wider layout - remove restrictive constraints
+// Let Hermit V2 defaults and asymmetric layout handle widths
+.page-about,
+.about-page,
+body.page .content,
+body.single .content {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// =============================================================================
+// ABOUT PAGE LAYOUT
+// =============================================================================
+
+.about-container {
+  // Remove restrictive max-width to match wider post layout
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+// Profile photo and bio layout
+.about-header {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}
+
+// Circular profile photo styling
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  min-width: 200px; // Prevent shrinking
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid $gruvbox-dark-fg; // Gruvbox fg0 color
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 150px;
+    min-width: 150px;
+  }
+}
+
+// Bio content area
+.about-bio {
+  flex: 1;
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  // Link styles handled globally above
+}
+
+// Social links section
+.about-social {
+  margin-bottom: 3rem;
+
+  h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+// Social links row styling
+.social-links-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: $gruvbox-dark-fg;
+    text-decoration: none;
+    transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
+
+    svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    &:hover {
+      transform: rotate(8deg) scale(1.15);
+    }
+
+    &:active {
+      transform: rotate(8deg) scale(0.95);
+    }
+  }
+
+  // Mobile-friendly tap targets
+  @media (max-width: 768px) {
+    a {
+      min-height: 44px;
+      padding: 0.5rem;
+    }
+  }
+}
+
+// GitHub activity section
+.github-activity {
+  margin-bottom: 2rem;
+
+  h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+// GitHub contribution chart styling
+.github-chart {
+  width: 100%;
+  // Remove max-width restriction for wider layout
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background: rgba($gruvbox-dark-bg1, 0.3);
+  padding: 1rem;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+  }
+}
+
+// Light mode adjustments for about page
+@media (prefers-color-scheme: light) {
+  .profile-photo {
+    border-color: #3c3836; // Dark color for light mode
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    &:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .github-chart {
+    background: rgba(#f2e5bc, 0.4);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  // about-bio link styles handled globally above
+
+  .social-links-row a:hover {
+    // Keep same color, only transform
+  }
+}
+
+// =============================================================================
+// SOCIAL SHARING INLINE COMPONENT
+// =============================================================================
+
+.social-share-inline {
+  margin: 3rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba($gruvbox-dark-fg-muted, 0.2);
+  border-bottom: 1px solid rgba($gruvbox-dark-fg-muted, 0.2);
+
+  .social-share-title {
+    font-size: 0.85em;
+    font-weight: var(--font-weight-semibold);
+    color: $gruvbox-dark-fg-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .social-share-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      gap: 1rem;
+      justify-content: center;
+    }
+  }
+
+  .social-share-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: $gruvbox-dark-fg-muted;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: var(--font-weight-medium);
+    transition: color 250ms ease-out, transform 200ms ease-out;
+    will-change: transform;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    span {
+      font-family: var(--font-family-base);
+    }
+
+    &:hover {
+      color: $gruvbox-orange;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // Mobile tap targets
+  @media (max-width: 768px) {
+    .social-share-link {
+      min-height: 44px;
+      padding: 0.5rem;
+    }
+  }
+}
+
+// Light mode adjustments for social sharing
+@media (prefers-color-scheme: light) {
+  .social-share-inline {
+    border-top-color: rgba(#504945, 0.2);
+    border-bottom-color: rgba(#504945, 0.2);
+
+    .social-share-title {
+      color: #504945;
+    }
+
+    .social-share-link {
+      color: #504945;
+
+      &:hover {
+        color: #d65d0e;
+      }
+    }
+  }
+}
+
+// =============================================================================
+// HOMEPAGE LAYOUT FIXES
+// =============================================================================
+
+// Home page center container
+#home-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+// Home title
+#home-title {
+  margin-bottom: 1rem;
+}
+
+// Typewriter subtitle container
+#typewriter-container {
+  margin-bottom: 2.5rem; // More space between quote and social icons
+  width: 100% !important; // Override theme's 60vw constraint
+  max-width: none !important;
+  display: flex;
+  justify-content: center;
+}
+
+// Ensure subtitle text is centered and sized appropriately
+#home-subtitle {
+  text-align: center;
+  font-size: 0.75rem !important; // Smaller to fit on 3 lines
+  white-space: pre !important; // Only break at explicit line breaks, no wrapping
+  max-width: none !important;
+  width: auto !important;
+  padding: 0 !important;
+}
+
+// Social links - horizontal row centered
+#home-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// Navigation menu - vertical layout
+#home-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  a {
+    display: block;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    min-width: 120px;
+  }
+}
+
+// Mobile adjustments
+@media (max-width: 768px) {
+  #home-links {
+    gap: 1rem;
+  }
+
+  #home-nav a {
+    font-size: 1rem;
+    min-width: 100px;
+  }
+}
+
+// =============================================================================
+// POST FOOTER SECTIONS (Terminal-style Subscribe, Share, Navigation)
+// =============================================================================
+
+.post-footer-sections {
+  margin-top: 4rem;
+  padding-top: 2rem;
+}
+
+// Dotted Section Dividers
+.dotted-divider {
+  border: none;
+  border-top: 2px dotted rgba($gb-fg-muted, 0.4);
+  margin: 2rem 0;
+  background: transparent;
+}
+
+// Minimalistic Subscribe Form (Peter Steinberger style)
+.subscribe-section {
+  background: transparent;
+  border: 1px solid rgba($gb-orange-bright, 0.5);
+  border-radius: 6px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+
+  .subscribe-heading {
+    font-size: 1rem;
+    font-weight: var(--font-weight-regular, 400);
+    color: $gb-fg;
+    margin: 0 0 1.25rem 0;
+    line-height: 1.5;
+  }
+
+  .subscribe-form {
+    margin-bottom: 0.75rem;
+  }
+
+  .subscribe-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+
+  .subscribe-input {
+    flex: 1;
+    min-width: 150px;
+    padding: 0.65rem 1rem;
+    font-family: var(--font-family-base);
+    font-size: 0.9rem;
+    background: transparent;
+    border: 1px solid rgba($gb-orange-bright, 0.4);
+    border-radius: 4px;
+    color: $gb-fg !important; // Off-white text
+    opacity: 1 !important;
+    transition: border-color 200ms ease;
+
+    &::placeholder {
+      color: $gb-fg-muted;
+      opacity: 0.7;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $gb-orange-bright;
+    }
+  }
+
+  .subscribe-button {
+    padding: 0.65rem 1.5rem;
+    font-family: var(--font-family-base);
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-semibold, 600);
+    background: $gb-orange-bright;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 200ms ease;
+
+    &:hover {
+      background: $gb-orange;
+    }
+
+    &:active {
+      background: darken($gb-orange, 5%);
+    }
+  }
+
+  .subscribe-note {
+    font-size: 0.8rem;
+    color: $gb-fg !important; // Off-white text
+    margin: 0;
+    opacity: 1 !important;
+  }
+}
+
+// Footer Tags Section
+.post-footer-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+
+  .footer-tag {
+    font-size: 0.9rem;
+    color: $gb-aqua;
+    text-decoration: none;
+    transition: color 200ms ease;
+
+    &:hover {
+      color: $gb-yellow;
+    }
+  }
+}
+
+// Share Section
+.share-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0;
+
+  .share-content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .share-label {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: $gb-fg-muted;
+  }
+
+  .share-icons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  // Share icons with rotation hover effect (same as homepage social icons)
+  .share-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: $gb-fg-muted;
+    text-decoration: none;
+    transition: color 250ms ease-out, transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    &:hover {
+      color: $gb-yellow;
+      transform: rotate(6deg) scale(1.1);
+    }
+
+    &:active {
+      transform: rotate(6deg) scale(0.95);
+    }
+  }
+
+  .back-to-top {
+    font-size: 0.85rem;
+    color: $gb-aqua;
+    text-decoration: underline dotted;
+    text-decoration-color: rgba($gb-aqua, 0.5);
+    text-underline-offset: 3px;
+    transition: color 200ms ease;
+
+    &:hover {
+      color: $gb-yellow;
+      text-decoration-color: rgba($gb-yellow, 0.7);
+    }
+  }
+}
+
+// Post Footer Navigation (Next/Previous)
+.post-footer-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 1.5rem 0;
+
+  a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-decoration: none;
+    padding: 1rem;
+    border: 1px solid rgba($gb-fg-muted, 0.2);
+    border-radius: 4px;
+    transition: border-color 200ms ease, background-color 200ms ease;
+
+    &:hover {
+      border-color: $gb-aqua;
+      background: rgba($gb-aqua, 0.05);
+    }
+  }
+
+  .nav-next {
+    text-align: left;
+  }
+
+  .nav-prev {
+    text-align: right;
+  }
+
+  .nav-label {
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium, 500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $gb-fg-muted;
+  }
+
+  .nav-title {
+    font-size: 0.95rem;
+    color: $gb-fg;
+    line-height: 1.4;
+  }
+}
+
+// Hide old post-nav since we have new footer nav
+.post-nav.dm-post-nav {
+  display: none;
+}
+
+// Mobile adjustments for post footer
+@media (max-width: 768px) {
+  .subscribe-section {
+    padding: 1.5rem;
+
+    .subscribe-inputs {
+      flex-direction: column;
+    }
+
+    .subscribe-input,
+    .subscribe-button {
+      width: 100%;
+    }
+  }
+
+  .share-section {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .share-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .share-icons {
+      flex-wrap: wrap;
+    }
+
+    .share-icon {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0.5rem;
+    }
+
+    .back-to-top {
+      align-self: flex-end;
+    }
+  }
+
+  .post-footer-nav {
+    flex-direction: column;
+    gap: 1rem;
+
+    .nav-next,
+    .nav-prev {
+      text-align: left;
+    }
+  }
+}
+
+// Light mode adjustments for post footer
+@media (prefers-color-scheme: light) {
+  .dotted-divider {
+    border-top-color: rgba(#504945, 0.4);
+  }
+
+  .subscribe-section {
+    background: transparent;
+    border-color: rgba($gb-orange-bright, 0.5);
+
+    .subscribe-input {
+      background: transparent;
+      border-color: rgba($gb-orange-bright, 0.4);
+      color: #3c3836;
+
+      &::placeholder {
+        color: #504945;
+      }
+
+      &:focus {
+        border-color: $gb-orange-bright;
+      }
+    }
+
+    .subscribe-button {
+      background: $gb-orange-bright;
+      color: #fff;
+
+      &:hover {
+        background: $gb-orange;
+      }
+    }
+  }
+
+  .post-footer-tags .footer-tag {
+    color: $gb-blue;
+
+    &:hover {
+      color: $gb-orange;
+    }
+  }
+
+  .share-section {
+    .share-icon {
+      color: #504945;
+
+      &:hover {
+        color: $gb-orange;
+      }
+    }
+
+    .back-to-top {
+      color: $gb-blue;
+      text-decoration-color: rgba($gb-blue, 0.5);
+
+      &:hover {
+        color: $gb-orange;
+        text-decoration-color: rgba($gb-orange, 0.7);
+      }
+    }
+  }
+
+  .post-footer-nav {
+    a {
+      border-color: rgba(#504945, 0.2);
+
+      &:hover {
+        border-color: $gb-blue;
+        background: rgba($gb-blue, 0.05);
+      }
+    }
+
+    .nav-title {
+      color: #3c3836;
+    }
+  }
+}
+
+// =============================================================================
+// PRINT STYLES
+// =============================================================================
+
+@media print {
+  body::before,
+  body::after {
+    display: none !important;
+  }
+
+  .logo-text::after,
+  .site-title::after,
+  header h1 a::after,
+  .header-title::after {
+    display: none;
+  }
+
+  article h1::after,
+  article h2::after {
+    display: none;
+  }
+
+  // Hide navigation, social icons, and post footer sections in print
+  .site-nav,
+  #mobile-menu,
+  .hdr-icons,
+  .social-icons,
+  .social-share-inline,
+  .post-footer-sections,
+  .subscribe-section,
+  .share-section {
+    display: none !important;
+  }
+
+  // About page print styles
+  .profile-photo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .social-links-row svg {
+    display: none;
+  }
+
+  .github-chart {
+    max-width: 100%;
+  }
+}
+
+// =============================================================================
+// ENHANCED POSTS LISTING (Hero Images, Descriptions, Tags)
+// =============================================================================
+
+// Enhanced posts list container
+.posts-list-enhanced {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+// Enhanced post item with vertical layout (base/structure styles)
+.post-item-enhanced {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem 0 1rem 1.25rem;
+  margin-bottom: 0;
+  border-left: 3px solid transparent;
+  border-bottom: none !important; // Override theme's dashed border
+  transition: border-color 250ms ease-out, background-color 250ms ease-out;
+
+  &:hover {
+    border-left-color: $gb-orange-bright;
+    background-color: rgba($gb-orange-bright, 0.03);
+  }
+
+  // Post link (title + date)
+  .post-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    text-decoration: none;
+    padding: 0 !important; // Override theme's padding
+  }
+
+  .post-title-list {
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-semibold, 600);
+    transition: color 200ms ease;
+  }
+
+  .post-day {
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  // Subtitle (shown below title)
+  .post-subtitle {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 600px;
+  }
+
+  // Hero image
+  .post-hero-link {
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .post-hero-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 6px;
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+
+  // Tags
+  .post-taxonomy {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .post-tags .tag {
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+}
+
+// Add divider between enhanced post items
+.posts-list-enhanced .post-item-enhanced + .post-item-enhanced {
+  border-top: 1px dashed rgba($gb-fg-muted, 0.3);
+  padding-top: 1rem;
+}
+
+// Dark mode colors for enhanced posts listing (default)
+.post-item-enhanced {
+  .post-title-list {
+    color: $gb-fg !important; // Off-white #E7D7AD
+    opacity: 1 !important; // Override theme's dimmed mixin
+  }
+
+  &:hover .post-title-list {
+    color: $gb-orange-bright !important;
+  }
+
+  .post-day {
+    color: $gb-fg !important; // Off-white #E7D7AD
+    opacity: 1 !important; // Override theme's dimmed mixin
+  }
+
+  .post-subtitle {
+    color: $gb-fg-muted;
+    opacity: 1 !important; // Override theme's dimmed mixin
+  }
+
+  .post-hero-image {
+    border: 1px solid rgba($gb-fg-muted, 0.2);
+  }
+
+  &:hover .post-hero-image {
+    border-color: rgba($gb-orange-bright, 0.4);
+  }
+
+  .post-tags .tag {
+    color: $gb-aqua;
+
+    &:hover {
+      color: $gb-yellow;
+    }
+  }
+}
+
+// Light mode adjustments for enhanced posts listing
+@media (prefers-color-scheme: light) {
+  .post-item-enhanced {
+    &:hover {
+      background-color: rgba($gb-orange-bright, 0.05);
+    }
+
+    .post-title-list {
+      color: #3c3836 !important;
+    }
+
+    &:hover .post-title-list {
+      color: $gb-orange !important;
+    }
+
+    .post-day {
+      color: #3c3836 !important;
+    }
+
+    .post-subtitle {
+      color: #504945;
+    }
+
+    .post-hero-image {
+      border-color: rgba(#504945, 0.2);
+    }
+
+    &:hover .post-hero-image {
+      border-color: rgba($gb-orange, 0.4);
+    }
+
+    .post-tags .tag {
+      color: $gb-blue;
+
+      &:hover {
+        color: $gb-orange;
+      }
+    }
+  }
+
+  .posts-list-enhanced .post-item-enhanced + .post-item-enhanced {
+    border-top-color: rgba(#504945, 0.3);
+  }
+}
+
+// Mobile adjustments for enhanced posts listing
+@media (max-width: 768px) {
+  .post-item-enhanced {
+    padding: 0.75rem 0 0.75rem 1rem;
+
+    .post-link {
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0 !important;
+    }
+
+    .post-title-list {
+      font-size: 1rem;
+    }
+
+    .post-hero-image {
+      max-width: 100%;
+    }
+
+    .post-subtitle {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+// =============================================================================
+// SITE FOOTER STYLING
+// =============================================================================
+
+#home-footer p,
+footer p {
+  font-size: 0.85rem;
+  color: $gb-fg-muted;
+  opacity: 0.8;
+
+  a {
+    color: $gb-fg;
+    text-decoration: none;
+    transition: color 200ms ease;
+
+    &:hover {
+      color: $gb-orange-bright;
+    }
+  }
+}

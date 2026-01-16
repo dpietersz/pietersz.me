@@ -1,0 +1,19 @@
+// Monaspace Neon Font Override for Hermit V2 Theme
+// This file overrides the default Hermit V2 fonts with Monaspace Neon
+
+// Monaspace Neon Font Face Declaration
+@font-face {
+  font-family: 'Monaspace Neon';
+  src: url('/fonts/MonaspaceNeon-Variable.ttf') format('truetype-variations');
+  font-weight: 300 700;
+  font-stretch: 100% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Font Variables
+$monaspace-neon: "Monaspace Neon", "SF Mono", "Fira Code", "Courier New", Consolas, Monaco, Menlo, monospace;
+
+// Override Hermit V2 default fonts with Monaspace Neon
+$fonts: $monaspace-neon;
+$code-fonts: $monaspace-neon;

@@ -1,0 +1,7 @@
+{{/* Extra footer scripts */}}
+{{/* Load scroll progress bar script on post pages */}}
+{{- if eq .Type "posts" -}}
+{{ $scrollProgress := resources.Get "js/scroll-progress.js" | minify | fingerprint -}}
+<script defer src="{{ $scrollProgress.Permalink }}" {{ printf "integrity=%q" $scrollProgress.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous"></script>
+{{- end -}}
+

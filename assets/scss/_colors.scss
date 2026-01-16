@@ -1,0 +1,169 @@
+// Gruvbox Color Palette Override for Hermit V2 Theme
+// This file overrides the default Hermit V2 colors with Gruvbox palette
+
+// Default dimmed value (required by Hermit V2)
+$dimmed-opacity: 0.8 !default;
+
+// Gruvbox Dark Colors
+$gruvbox-dark-bg: #282828;
+$gruvbox-dark-bg-soft: #32302f;
+$gruvbox-dark-bg-hard: #1d2021;
+$gruvbox-dark-bg1: #3c3836;
+$gruvbox-dark-bg2: #504945;
+$gruvbox-dark-fg: #ebdbb2;
+$gruvbox-dark-fg-soft: #d5c4a1;
+$gruvbox-dark-fg-muted: #928374;
+
+// Gruvbox Light Colors
+$light-bg: #fbf1c7;
+$light-bg-soft: #f2e5bc;
+$light-bg-hard: #f9f5d7;
+$light-fg: #3c3836;
+$light-fg-soft: #504945;
+$light-fg-muted: #928374;
+
+// Gruvbox Accent Colors
+$gruvbox-orange: #fe8019;
+$gruvbox-orange-dark: #d65d0e;
+$gruvbox-yellow: #fabd2f;
+$gruvbox-yellow-dark: #b57614;
+$gruvbox-red: #fb4934;
+$gruvbox-red-dark: #cc241d;
+$gruvbox-green: #b8bb26;
+$gruvbox-green-dark: #98971a;
+$gruvbox-aqua: #8ec07c;
+$gruvbox-aqua-dark: #689d6a;
+$gruvbox-blue: #83a598;
+$gruvbox-blue-dark: #458588;
+$gruvbox-purple: #d3869b;
+$gruvbox-purple-dark: #b16286;
+
+// Override Hermit V2 default colors with Gruvbox
+
+// Background color
+$html-background: $gruvbox-dark-bg !default;
+
+// Site Navigation color
+$site-nav-children-border-right: $gruvbox-dark-fg-muted !default;
+
+// Posts seperator in list view
+$post-item-border-bottom: $gruvbox-dark-bg1 !default;
+
+// Pinned posts group seperator in list view
+$pinned-posts-group-border-bottom: $gruvbox-dark-fg-muted !default;
+
+// Accent color elements (using Gruvbox orange)
+$aTag-mixin-a-box-shadow: $gruvbox-orange !default;
+$aTag-mixin-a-hover-box-shadow: $gruvbox-orange-dark !default;
+$content-anchor-hover: $gruvbox-orange !default;
+$post-description-a-hover-border-bottom: $gruvbox-orange !default;
+$tableofcontents-a-hover-border-bottom: $gruvbox-orange !default;
+$scrolltotop-arrow: $gruvbox-orange !default;
+$typewriter: $gruvbox-orange !default;
+$footnote-ref-hover-background: $gruvbox-orange !default;
+$marked-background: $gruvbox-orange !default;
+$inserted-text-underline: $gruvbox-green !default;
+
+// Footnote
+$footnote-ref-background: $gruvbox-dark-bg2 !default;
+
+// Scroll to Top colors
+$scrolltotop-ring: $gruvbox-dark-fg-muted !default;
+$scrolltotop-circle: $gruvbox-dark-bg1 !default;
+
+// Page Scrollbar
+$pagescrollbar-background: $gruvbox-dark-bg1 !default;
+$pagescrollbar-thumb: $gruvbox-dark-fg-muted !default;
+$pagescrollbar-thumb-hover: $gruvbox-dark-fg !default;
+
+// Table of Contents
+$tableofcontents-background: transparent;
+
+// Table of Contents Scrollbar
+$tableofcontents-scrollbar-track: $gruvbox-dark-bg1 !default;
+$tableofcontents-scrollbar-thumb: $gruvbox-dark-bg2 !default;
+$tableofcontents-scrollbar-thumb-hover: $gruvbox-dark-fg-muted !default;
+
+// Text color
+$text: $gruvbox-dark-fg !default;
+
+// Text selection color
+$text-select: $gruvbox-dark-bg2 !default;
+
+// Marked text color
+$marked-text: $gruvbox-dark-fg !default;
+
+// Link text color on hover
+$a-hover: $gruvbox-yellow !default;
+
+// 404 Page
+$btn-404-a-border: $gruvbox-dark-fg !default;
+$btn-404-a-hover: $gruvbox-orange !default;
+
+// Social Share links pane
+$share-links-background: $gruvbox-dark-bg1 !default;
+$share-links-a: $gruvbox-dark-fg-muted !default;
+$share-links-a-hover-active-focus: $gruvbox-orange !default;
+
+// Code block, Mermaid block color
+$pre-code: $gruvbox-dark-fg !default;
+$pre-code-background: transparent !default;
+$code-background: $gruvbox-dark-bg1 !default;
+$syntax-background: $gruvbox-dark-bg-soft !default;
+$pre-background: $gruvbox-dark-bg-soft !default;
+$mermaid-background: $gruvbox-dark-bg-hard !default;
+
+// Code copy button
+$highlight-copy-btn: $gruvbox-dark-fg !default;
+$highlight-copy-btn-hover: $gruvbox-orange !default;
+$highlight-copy-btn-background: $gruvbox-dark-bg1 !default;
+
+// Site Header color
+$site-header-background: $gruvbox-dark-bg1 !default;
+
+// Mobile menu color
+$mobile-menu-background: $gruvbox-dark-bg1 !default;
+
+// Accessibility - Screen reader
+$screen-reader-text: $gruvbox-blue !default;
+$screen-reader-text-background: $light-bg !default;
+
+// Featured Image (or Background Image) Copyright section
+$featured-image-text: $gruvbox-dark-fg !default;
+$featured-image-background: rgba($gruvbox-dark-bg1, 0.85) !default;
+
+// Image Gallery specific colours
+$gallery-item-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !default;
+$gallery-item-hover-box-shadow: 0 4px 8px rgba($gruvbox-orange, 0.3) !default;
+$gallery-item-caption-background: rgba($gruvbox-dark-bg, 0.85) !default;
+$gallery-item-caption-color: $gruvbox-dark-fg !default;
+$lightbox-overlay-background: rgba($gruvbox-dark-bg, 0.95) !default;
+$lightbox-image-box-shadow: 0 5px 15px rgba(0,0,0,0.5) !default;
+$lightbox-caption-color: $gruvbox-dark-fg !default;
+$lightbox-close-nav-color: $gruvbox-dark-fg !default;
+$lightbox-close-color-hover: $gruvbox-orange !default;
+$lightbox-nav-background-color: rgba($gruvbox-dark-bg1, 0.5) !default;
+$lightbox-nav-background-color-hover: rgba($gruvbox-dark-bg1, 0.8) !default;
+
+// Admonition colors (using Gruvbox palette)
+$admonition-background: (
+    "note": rgba($gruvbox-blue, 0.15),
+    "info": rgba($gruvbox-aqua, 0.15),
+    "tip": rgba($gruvbox-green, 0.15),
+    "success": rgba($gruvbox-green, 0.15),
+    "warning": rgba($gruvbox-yellow, 0.15),
+    "failure": rgba($gruvbox-red, 0.15),
+    "danger": rgba($gruvbox-red, 0.15),
+    "bug": rgba($gruvbox-purple, 0.15),
+) !default;
+
+$admonition-color: (
+    "note": $gruvbox-blue,
+    "info": $gruvbox-aqua,
+    "tip": $gruvbox-green,
+    "success": $gruvbox-green,
+    "warning": $gruvbox-yellow,
+    "failure": $gruvbox-red,
+    "danger": $gruvbox-red,
+    "bug": $gruvbox-purple,
+) !default;

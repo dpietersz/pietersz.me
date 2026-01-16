@@ -1,0 +1,26 @@
+{{- /* Display maximum 3 related posts based on tag overlap */ -}}
+{{- $related := .Site.RegularPages.Related . | first 3 }}
+{{ with $related }}
+<div class="related-posts thin">
+	<h2>{{- if fileExists "i18n" -}} {{ i18n "seeAlso" }} {{- else -}} Related Posts {{- end -}}</h2>
+	<ul>
+	{{ range . }}
+	<li>
+		<a href="{{ .RelPermalink }}">{{ .Title }}</a>
+		{{- /* Optionally show date and read time for related posts */ -}}
+		{{- if $.Site.Params.relatedPostsInfo }}
+		<span class="related-post-meta">
+			· {{ .Date.Format (default "Jan 2, 2006" $.Site.Params.dateform.ShortDate) }}
+			{{- $readTime := div (.WordCount) 220 -}}
+			{{- if lt $readTime 1 -}}
+				· 1 min read
+			{{- else -}}
+				· {{ $readTime }} min read
+			{{- end -}}
+		</span>
+		{{- end }}
+	</li>
+	{{ end }}
+	</ul>
+</div>
+{{ end -}}

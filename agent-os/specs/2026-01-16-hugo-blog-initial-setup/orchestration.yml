@@ -1,0 +1,25 @@
+task_groups:
+  - name: Hugo Site Foundation
+    claude_code_subagent: engineer
+  - name: Gruvbox Theme Configuration
+    claude_code_subagent: engineer
+  - name: Typography System
+    claude_code_subagent: engineer
+  - name: Visual Distinctiveness Features
+    claude_code_subagent: engineer
+  - name: Content Templates & Archetypes
+    claude_code_subagent: engineer
+  - name: Sidenotes Implementation
+    claude_code_subagent: engineer
+  - name: Navigation and Menu
+    claude_code_subagent: engineer
+  - name: Homepage and About Page
+    claude_code_subagent: engineer
+  - name: Blog Post Features
+    claude_code_subagent: engineer
+  - name: SEO Configuration
+    claude_code_subagent: engineer
+  - name: Deployment Pipeline
+    claude_code_subagent: engineer
+  - name: First Blog Post
+    claude_code_subagent: engineer

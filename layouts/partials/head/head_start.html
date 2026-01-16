@@ -1,0 +1,22 @@
+{{/* Custom fonts: Monaspace Neon - Task Group 3 */}}
+{{/* Preload critical font weights for performance */}}
+<link rel="preload" href="{{ "fonts/MonaspaceNeon-Variable.ttf" | absURL }}" as="font" type="font/ttf" crossorigin>
+
+{{/* Inline critical font-face declarations for immediate loading */}}
+<style>
+  @font-face {
+    font-family: "Monaspace Neon";
+    src: url('{{ "fonts/MonaspaceNeon-Variable.ttf" | absURL }}') format('truetype-variations');
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Monaspace Neon";
+    src: url('{{ "fonts/MonaspaceNeon-Variable.ttf" | absURL }}') format('truetype-variations');
+    font-weight: 300 700;
+    font-style: italic;
+    font-display: swap;
+  }
+</style>

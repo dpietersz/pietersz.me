@@ -1,0 +1,9 @@
+{{- if .Site.Params.readTime -}}
+    {{- .Site.Params.readTimeSeparator -}}
+    {{- $readTime := div (.WordCount) 220 -}}
+    {{- if lt $readTime 1 -}}
+        1 min read
+    {{- else -}}
+        {{ $readTime }} min read
+    {{- end -}}
+{{- end -}}

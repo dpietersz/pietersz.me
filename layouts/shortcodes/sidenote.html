@@ -1,0 +1,6 @@
+{{- /* Sidenote shortcode - Daniel Miessler style
+     Desktop (>1200px): Displays in right margin with lighter typography
+     Mobile/Tablet: Displays as inline styled block
+     Usage: {{< sidenote >}}Your sidenote content here{{< /sidenote >}}
+*/ -}}
+<span class="sidenote">{{ .Inner | markdownify }}</span>

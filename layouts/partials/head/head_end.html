@@ -1,0 +1,60 @@
+{{/* Additional scripts and head elements will be added here */}}
+{{/* This partial is called at the end of <head>, before </head> */}}
+
+{{/* Load custom typography CSS - Task Group 3 */}}
+{{ $typography := resources.Get "css/typography.css" }}
+{{ if $typography }}
+  {{ $typography = $typography | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $typography.RelPermalink }}" integrity="{{ $typography.Data.Integrity }}" crossorigin="anonymous">
+{{ end }}
+
+{{/* Load visual distinctiveness CSS - Task Group 4 */}}
+{{ $distinctiveness := resources.Get "css/distinctiveness.css" }}
+{{ if $distinctiveness }}
+  {{ $distinctiveness = $distinctiveness | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $distinctiveness.RelPermalink }}" integrity="{{ $distinctiveness.Data.Integrity }}" crossorigin="anonymous">
+{{ end }}
+
+{{/* Mermaid Gruvbox Theme Configuration - Task Group 9.3 */}}
+{{- if .Page.Store.Get "hasMermaid" -}}
+<script type="module">
+  window.mermaidConfig = {
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      // Gruvbox dark color scheme
+      primaryColor: '#fe8019',
+      primaryTextColor: '#ebdbb2',
+      primaryBorderColor: '#d65d0e',
+      lineColor: '#928374',
+      secondaryColor: '#d79921',
+      tertiaryColor: '#689d6a',
+      background: '#282828',
+      mainBkg: '#3c3836',
+      secondBkg: '#504945',
+      mainContrastColor: '#ebdbb2',
+      darkMode: true,
+      fontFamily: '"Monaspace Neon", "SF Mono", "Fira Code", monospace',
+      fontSize: '16px',
+      // Node styling
+      nodeBorder: '#d65d0e',
+      clusterBkg: '#3c3836',
+      clusterBorder: '#928374',
+      // Activity diagram
+      actorBkg: '#504945',
+      actorBorder: '#d65d0e',
+      actorTextColor: '#ebdbb2',
+      actorLineColor: '#928374',
+      signalColor: '#ebdbb2',
+      signalTextColor: '#ebdbb2',
+      // Class diagram
+      classText: '#ebdbb2',
+      // State diagram
+      labelColor: '#ebdbb2',
+      // ER diagram
+      attributeBackgroundColorOdd: '#3c3836',
+      attributeBackgroundColorEven: '#504945'
+    }
+  };
+</script>
+{{- end -}}

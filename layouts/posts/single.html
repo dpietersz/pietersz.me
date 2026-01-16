@@ -1,0 +1,166 @@
+{{ define "head" }}
+	{{ if .Params.featuredImg -}}
+	<style>.bg-img {background-image: url('{{.Params.featuredImg}}');}</style>
+	{{- else if .Params.images -}}
+		{{- range first 1 .Params.images -}}
+		<style>.bg-img {background-image: url('{{. | absURL}}');}</style>
+		{{- end -}}
+	{{- end -}}
+{{ end }}
+
+{{ define "header" }}
+{{ partial "header.html" . }}
+{{ end }}
+
+{{ define "main" }}
+	{{/* Scroll Progress Bar */}}
+	<div class="scroll-progress-container">
+		<div class="scroll-progress-bar"></div>
+	</div>
+	{{- if (or .Params.images .Params.featuredImg) }}
+	<div class="bg-img"></div>
+	{{- if .Params.ImgCopyright }}<div class="bg-img-copyright">{{ .Params.ImgCopyright | safeHTML }}</div>{{- end }}
+	{{- end }}
+	<main class="site-main dm-layout {{- if ne false .Site.Params.usesAnimation }} animated fadeIn faster {{- end -}}">
+		<article class="dm-article">
+			{{/* Left column - title, subtitle, metadata at top, sidenotes flow here via CSS */}}
+			<aside class="dm-sidebar">
+				<header class="dm-header">
+					<h1 class="dm-title">{{ .Title }}</h1>
+					{{- with .Params.subtitle }}
+					<p class="dm-subtitle">{{ . }}</p>
+					{{- end }}
+				</header>
+				<div class="dm-meta">
+					<time class="dm-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (default "Jan 2, 2006" .Site.Params.dateform.LongDate) }}</time>
+					{{- if .Params.tags }}
+					<div class="dm-tags">
+						{{- range .Params.tags }}
+						<a href="{{ "tags/" | absLangURL }}{{ . | urlize }}">#{{ . }}</a>
+						{{- end }}
+					</div>
+					{{- end }}
+					<div class="dm-reading-time">{{ .ReadingTime }} min read</div>
+				</div>
+			</aside>
+
+			{{/* Right column - main content only */}}
+			<div class="dm-main">
+				<div class="content dm-content">
+					{{ .Content | safeHTML }}
+				</div>
+				{{ partial "brainMade.html" . }}
+				{{- if .Site.Params.relatedPosts }}
+				{{- partial "related-posts.html" . -}}
+				{{- end }}
+
+				{{/* ===== POST FOOTER SECTIONS ===== */}}
+				<div class="post-footer-sections">
+
+					{{/* Newsletter Subscribe Form - Powered by Buttondown */}}
+					<section class="subscribe-section">
+						<h3 class="subscribe-heading">New posts, shipping stories, and nerdy links straight to your inbox.</h3>
+						<form class="subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/pietersz" method="post" target="_blank">
+							<div class="subscribe-inputs">
+								<input type="text" name="metadata__name" id="bd-name" placeholder="Your Name" class="subscribe-input" required>
+								<input type="email" name="email" id="bd-email" placeholder="Your Email" class="subscribe-input" required>
+								<button type="submit" class="subscribe-button">Subscribe</button>
+							</div>
+						</form>
+						<p class="subscribe-note">2× per month, pure signal, zero fluff.</p>
+					</section>
+
+					{{/* Dotted Divider */}}
+					<hr class="dotted-divider">
+
+					{{/* Tags Section */}}
+					{{- if .Params.tags }}
+					<section class="post-footer-tags">
+						{{- range .Params.tags }}
+						<a href="{{ "tags/" | absLangURL }}{{ . | urlize }}" class="footer-tag">#{{ . }}</a>
+						{{- end }}
+					</section>
+					{{- end }}
+
+					{{/* Share Section with Back to Top */}}
+					<section class="share-section">
+						<div class="share-content">
+							<span class="share-label">Share this post on:</span>
+							<div class="share-icons">
+								{{- $url := .Permalink -}}
+								{{- $title := .Title -}}
+								{{/* X (Twitter) */}}
+								<a href="https://twitter.com/intent/tweet?url={{ $url }}&text={{ $title }}" target="_blank" rel="noopener" aria-label="Share on X" class="share-icon">
+									{{- partial "svg.html" (dict "context" . "name" "x") -}}
+								</a>
+								{{/* BlueSky */}}
+								<a href="https://bsky.app/intent/compose?text={{ $title }}%20{{ $url }}" target="_blank" rel="noopener" aria-label="Share on BlueSky" class="share-icon">
+									{{- partial "svg.html" (dict "context" . "name" "bluesky") -}}
+								</a>
+								{{/* LinkedIn */}}
+								<a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="share-icon">
+									{{- partial "svg.html" (dict "context" . "name" "linkedin") -}}
+								</a>
+								{{/* WhatsApp */}}
+								<a href="https://wa.me/?text={{ $title }}%20{{ $url }}" target="_blank" rel="noopener" aria-label="Share on WhatsApp" class="share-icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+								</a>
+								{{/* Facebook */}}
+								<a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" target="_blank" rel="noopener" aria-label="Share on Facebook" class="share-icon">
+									{{- partial "svg.html" (dict "context" . "name" "facebook") -}}
+								</a>
+								{{/* Telegram */}}
+								<a href="https://t.me/share/url?url={{ $url }}&text={{ $title }}" target="_blank" rel="noopener" aria-label="Share on Telegram" class="share-icon">
+									{{- partial "svg.html" (dict "context" . "name" "telegram") -}}
+								</a>
+								{{/* Pinterest */}}
+								<a href="https://pinterest.com/pin/create/button/?url={{ $url }}&description={{ $title }}" target="_blank" rel="noopener" aria-label="Share on Pinterest" class="share-icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4"></path><path d="M12 12v8"></path></svg>
+								</a>
+								{{/* Email */}}
+								<a href="mailto:?subject={{ $title }}&body=Check%20out%20this%20post:%20{{ $url }}" target="_self" rel="noopener" aria-label="Share via Email" class="share-icon">
+									{{- partial "svg.html" (dict "context" . "name" "email") -}}
+								</a>
+							</div>
+						</div>
+						<a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to Top ↑</a>
+					</section>
+
+					{{/* Dotted Divider */}}
+					<hr class="dotted-divider">
+
+					{{/* Next/Previous Post Navigation */}}
+					<nav class="post-footer-nav">
+						{{- with .NextInSection }}
+						<a class="nav-next" href="{{ .Permalink }}">
+							<span class="nav-label">← Newer</span>
+							<span class="nav-title">{{ .Title }}</span>
+						</a>
+						{{- end }}
+						{{- with .PrevInSection }}
+						<a class="nav-prev" href="{{ .Permalink }}">
+							<span class="nav-label">Older →</span>
+							<span class="nav-title">{{ .Title }}</span>
+						</a>
+						{{- end }}
+					</nav>
+
+				</div>
+				{{/* ===== END POST FOOTER SECTIONS ===== */}}
+
+			</div>
+		</article>
+		{{- if .Params.toc }}
+		<aside id="toc">
+			<div class="toc-title">{{- if fileExists "i18n" -}} {{ i18n "tableOfContents" }} {{- else -}} Table of Contents {{- end -}}</div>
+			{{ .TableOfContents }}
+		</aside>
+		{{- end }}
+		<div id="comments" class="dm-comments">
+		{{- partial "comments.html" . -}}
+		</div>
+	</main>
+{{ end }}
+
+{{ define "footer" }}<footer id="site-footer" class="section-inner thin {{- if ne false .Site.Params.usesAnimation }} animated fadeIn faster {{- end -}}">{{- if templates.Exists "partials/posts-footer.html" -}}{{- partialCached "posts-footer.html" . -}}{{- else -}}{{- partial "footer.html" . -}}{{- end -}}</footer>
+{{ end }}

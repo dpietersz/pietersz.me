@@ -1,0 +1,150 @@
+baseURL = 'https://pietersz.me'
+languageCode = 'en-us'
+defaultContentLanguage = 'en'
+title = 'Dimitri Pietersz'
+enableRobotsTXT = true
+theme = 'hermit-v2'
+enableEmoji = true
+pygmentsCodefences = true
+pygmentsUseClasses = true
+copyright = 'Copyright © 2026 Dimitri Pietersz'
+
+# RSS Feed Configuration
+[services.rss]
+  limit = -1  # Include all posts (unlimited)
+
+# Cache Configuration (for GitHub Pages deployment)
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
+# Build Configuration
+[build]
+  noJSConfigInAssets = true
+  [build.buildStats]
+    enable = true
+
+# Markup Configuration
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ""
+    hl_inline = false
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = false
+    noHl = false
+    style = "gruvbox"
+    tabWidth = 4
+
+# Taxonomies - Tags only, no categories
+[taxonomies]
+  tag = 'tags'
+
+# Permalinks Configuration
+[permalinks]
+  posts = '/posts/:year/:slug/'
+
+# Output Formats
+[outputs]
+  home = ['HTML', 'RSS', 'searchIndex']
+  section = ['HTML', 'RSS']
+
+[outputFormats]
+  [outputFormats.searchIndex]
+    mediaType = "application/json"
+    baseName = "search-index"
+    isPlainText = true
+    notAlternative = true
+
+# Sitemap Configuration
+[sitemap]
+  changefreq = 'weekly'
+  filename = 'sitemap.xml'
+  priority = 0.5
+
+# Theme Parameters
+[params]
+  description = 'Personal blog of Dimitri Pietersz - Data Engineer, coder, AI enthusiast building Surpassion'
+  # Gruvbox Baby color palette
+  themeColor = '#282828'      # Standard dark background
+  accentColor = '#FABD2F'     # Gruvbox Baby yellow for accents
+
+  footerCopyright = 'Copyright © 2026 Dimitri Pietersz'
+  justifyContent = false
+  relatedPosts = false
+  code_copy_button = true
+  homeSubtitle = "\"If you focus on the known, you get the known.<br>If you focus on the unknown, you create a possibility.\"<br>— Dr. Joe Dispenza"
+  homeSubtitlePrinter = true
+  scrollToTop = true
+  global_mathjax = false
+  readTime = true
+  readTimeSeparator = '·'
+  shareSocial = false
+  pinned = "Pinned"
+
+  # Posts listing layout - show descriptions and tags
+  listLayout = ["description", "tags"]
+
+  # SEO Configuration
+  [params.seo]
+    twitter_site = "@dimitrip80"
+    twitter_creator = "@dimitrip80"
+    og_image = "/images/og-default.png"
+    twitter_card = "summary_large_image"
+
+  [params.author]
+    name = 'Dimitri Pietersz'
+    twitter = '@dimitrip80'
+
+  [params.gallery]
+    enable = true
+    thumbnail = '300'
+
+  [params.dateform]
+    CopyrightDate = '2006'
+    LongDate = 'Jan 2, 2006'
+    ShortDate = 'Jan 2'
+    NumDateShort = '2006-01-02'
+    NumDateLong = '2006-01-02 15:04 -0700'
+
+# Language Configuration
+[languages]
+  [languages.en]
+    languageName = 'English'
+    weight = 10
+
+# Menu Configuration
+[menu]
+  [[menu.main]]
+    name = 'Posts'
+    pageRef = '/posts'
+    weight = 10
+  [[menu.main]]
+    name = 'About'
+    pageRef = '/about'
+    weight = 20
+
+# Social Links Configuration
+[[params.socialLinks]]
+  name = 'github'
+  url = 'https://github.com/dpietersz'
+
+[[params.socialLinks]]
+  name = 'x'
+  url = 'https://x.com/dimitrip80'
+
+[[params.socialLinks]]
+  name = 'instagram'
+  url = 'https://instagram.com/dimi.tri80'
+
+[[params.socialLinks]]
+  name = 'linkedin'
+  url = 'https://linkedin.com/in/dpietersz'
