@@ -14,7 +14,7 @@ This is the first post on my personal blog, and I wanted to start by explaining 
 
 ## Who Am I?
 
-I'm Dimitri Pietersz, a Data Engineer based in the Netherlands. I spend my days building data pipelines, solving engineering challenges, and exploring the intersection of AI and productivity. I'm currently working on [Surpassion](https://surpassion.com) - my first SaaS product, and this blog is part of that journey.
+I'm Dimitri Pietersz, a Data Engineer based in the Netherlands. I spend my days building data pipelines, solving engineering challenges, and exploring the intersection of AI and productivity. I'm currently working on [Surpassion](https://surpassion.nl) - my first SaaS product, and this blog is part of that journey.
 
 The name "Surpassion" comes from two words: "surpassing yourself with passion." It represents my approach to work and life: continuous improvement driven by genuine enthusiasm.
 
