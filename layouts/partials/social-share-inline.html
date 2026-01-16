@@ -6,7 +6,7 @@
         {{- $title := .Title -}}
 
         {{/* X (Twitter) */}}
-        <a href="https://twitter.com/intent/tweet?url={{ $url | safeURL }}&text={{ $title | querify "" | strings.TrimPrefix "=" }}"
+        <a href="https://x.com/intent/tweet?url={{ $url | safeURL }}&text={{ $title | querify "" | strings.TrimPrefix "=" }}"
            target="_blank"
            rel="noopener"
            aria-label="Share on X"
